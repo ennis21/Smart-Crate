@@ -52,7 +52,7 @@ if __name__ == "__main__":
     Function below handles the camera file path being updated
     Define the path for the recordings 
     '''
-    path = "C:/Users/Ennis/Desktop/Fall 2021 Classes/Senior Design Project 2/Code/Video Recordings"
+    path = "C:/Users/Ennis/Desktop/Fall 2021 Classes/Senior Design Project 2/Smart-Crate/Video Recordings"
     bucket = 'camerarecordings-utd1284'
     
 
@@ -76,8 +76,7 @@ if __name__ == "__main__":
             '''
             '''INFINITE LOOP'''
             '''USE THE CAMERA TRIGGER TO UPLOAD TO THE S3 BUCKET'''
-            #Make a condition where it uploads only when a new file is entered.
-            #Also base the sleep time on the amount of time needed to rrecord and save the camera footage
+            
             for file in os.listdir(path):
                  uploaded = upload_to_aws(path, bucket)
             
