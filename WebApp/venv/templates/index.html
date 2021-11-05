@@ -1,0 +1,10 @@
+<form method="post" action = "submit">
+    <div class="form-group"><input class="form-control" type="number" name="track" placeholder="TrackingID"></div>
+    <input type="submit" name="submit">
+</form>
+
+<!--This code below creates a button that will render us to a template that lists the files in our s3 bucket-->
+<h3>View Recordings<h3/>
+    <form method="get" action="/recordingbutton">
+        <input type="submit" Value= "Recordings" name="recordingbutton"/>
+    </form>
