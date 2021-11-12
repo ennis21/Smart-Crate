@@ -52,30 +52,44 @@ if __name__ == "__main__":
     Function below handles the camera file path being updated
     Define the path for the recordings 
     '''
-    path = "C:/Users/Ennis/Desktop/Fall 2021 Classes/Senior Design Project 2/Smart-Crate/Video Recordings"
-    bucket = 'camerarecordings-utd1284'
+    path = "C:/Users/Ennis/Desktop/Fall 2021 Classes/Senior Design Project 2/Smart-Crate/Video Recordings/Videos"
+    bucket = 'camerarecordings-utd1284/videos/'
+   
     
 
-    #Initialize the event handler 
-    event_handler = LoggingEventHandler()
-
-    #Initialize the observer 
-    observer = Observer()
-    observer.schedule(event_handler, path, recursive=True)
-
-
-    #Start observing the given directory for changes
-    observer.start()
-    try:
-        while True:
-            '''
+    
+    '''
             Call function to upload theh files to s3 bucket
             Bucket Name: Name of the s3 bucket is camerarecordings-utd1284
             local_file: The path for the files we want to upload 
             s3_file_name: the name of our file when its sent to the bucket
-            '''
-            '''INFINITE LOOP'''
-            '''USE THE CAMERA TRIGGER TO UPLOAD TO THE S3 BUCKET'''
+            
+            
+            INFINITE LOOP
+            USE THE CAMERA TRIGGER TO UPLOAD TO THE S3 BUCKET
+            
+    '''
+            
+    for file in os.listdir(path):
+                 uploaded = upload_to_aws(path, bucket)
+
+
+
+
+
+
+
+
+
+
+
+
+    '''
+    #Start observing the given directory for changes
+    observer.start()
+    try:
+        while True:
+            
             
             for file in os.listdir(path):
                  uploaded = upload_to_aws(path, bucket)
@@ -85,6 +99,10 @@ if __name__ == "__main__":
     finally:
         observer.stop()
         observer.join()
+      
+      '''  
+    
+    
 
 
 

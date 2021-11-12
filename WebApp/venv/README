@@ -1,0 +1,28 @@
+#Include Directions and Docuementation#
+
+#Install The virtual enviroment
+pip install virtualenv
+#Create virtualenv
+python3 -m venv venv
+#Create virtualenv for windows
+py -3 -m venv venv
+#Activate virualenv:
+. venv/bin/activate
+#Activate virualenv for windows
+venv\Scripts\activate
+#Install Flask on the enviroment
+pip install flask
+
+
+#Tell the terminal what application to run
+export FLASK_APP=main.py
+#Tell the terminal what application to run for windows
+set FLASK_APP=main.py
+#Run the application
+flask run
+
+
+#Clear the command line 
+Type cls 
+
+#Instructions for installing AWS CLI into rasberry pi
