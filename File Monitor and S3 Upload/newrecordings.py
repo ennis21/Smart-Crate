@@ -52,8 +52,8 @@ if __name__ == "__main__":
     Function below handles the camera file path being updated
     Define the path for the recordings 
     '''
-    path = "C:/Users/Ennis/Desktop/Fall 2021 Classes/Senior Design Project 2/Smart-Crate/Video Recordings/Videos"
-    bucket = 'camerarecordings-utd1284/videos/'
+    path = "C:/Users/Ennis/Desktop/Fall 2021 Classes/Senior Design Project 2/Smart-Crate/Video Recordings/"
+    bucket = 'camerarecordings-utd1284'
    
     
 

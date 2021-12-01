@@ -7,6 +7,7 @@ from botocore.exceptions import ClientError
 import json
 from boto3.dynamodb.conditions import Key
 from pprint import pprint
+from sendemail import *
 
 def run_example():
 
@@ -47,6 +48,10 @@ def get_tracking(trackingnumber):
 
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table('SmartTrack')
+    
+    '''For the AWS SNS function to notify the user a package is being delivered'''
+    topic_arn='arn:aws:sns:us-west-1:862742272774:Delivery-Alert'
+    door_open = 1
         
         #Option 1
         
@@ -69,7 +74,9 @@ def get_tracking(trackingnumber):
         track=int(track)
 
         if trackingnumber == track:
-            print("Correct")
+            print("Correct, notifying user of package being delivered")
+            publishmessage(topic_arn, door_open)
+            
         else:
             print("Wrong")
 

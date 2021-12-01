@@ -1,5 +1,6 @@
-from flask import Flask, render_template, request, send_file
 import boto3
+from flask import Flask, render_template, request, send_file
+
 from s3functions import download_file, list_files
 
 app = Flask(__name__)
