@@ -8,20 +8,20 @@
 
     <div class="content">
 
-        <h3>FlaskDrive: S3 Flask Demo</h3>
+        <h3>Smart Crate Recording Hub</h3>
     
-        <p>Welcome to this AWS S3 Demo</p>
+     
     
     
     
     
         <div>
-          <h3>These are your uploaded files:</h3>
-          <p>Click on the filename to stream it.</p>
+          <h3>These are your smart crate recordings:</h3>
+          <p>Click on the video to download and view it.</p>
           <ul>
             {% for item in contents %}
               <li>
-                <a href="/stream/{{ item.Key }}"> {{ item.Key }} </a>
+                <a href="/stream/{{ item }}" > {{ item }} </a>
               </li>
             {% endfor %}
           </ul>

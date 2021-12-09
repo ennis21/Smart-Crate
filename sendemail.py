@@ -77,11 +77,11 @@ if __name__ == '__main__':
     #topic = create_topic(topic_name)
 
     '''Subsribe to the topic'''
-    print("Subscribing to the topic")
-    subscription = subscribe(topic_arn, protocol, endpoint)
+    #print("Subscribing to the topic")
+    #subscription = subscribe(topic_arn, protocol, endpoint)
 
     '''the f-string format the sring we want to read in the print statement 
        The f or F in front of strings tell Python to look at the values inside {} and 
        substitute them with the variables values if exists.'''
-    #print(f"Sending a message to {endpoint}. ")  
-    #publishmessage(topic_arn, door_open)
+    print(f"Sending a message to {endpoint}. ")  
+    publishmessage(topic_arn, door_open)

@@ -1,7 +1,7 @@
+from flask import Flask, render_template, request, redirect
 import boto3
-from flask import Flask, render_template, request, send_file
-
-from s3functions import download_file, list_files
+from werkzeug.datastructures import Headers
+import re
 
 app = Flask(__name__)
 dynamodb = boto3.resource('dynamodb')
@@ -26,8 +26,6 @@ def insert():
     return render_template('return.html')
 
 
-
-
 #Return template that displays a successful insertion method 
 @app.route('/return')
 def Return():
@@ -39,28 +37,25 @@ def Return():
 #This route renders a template that displays the recordings 
 @app.route("/recordingbutton")
 def recordings():
-    contents = list_files(Bucket)
-    return render_template('recordings.html',contents=contents)
+    keys = []
+    client = boto3.client('s3')
+    contents = client.list_objects_v2(Bucket=Bucket, Prefix='converted_videos/')
+    for obj in contents['Contents']:
+        keys.append(obj['Key'])
+    return render_template('recordings.html',contents=keys)
 
 
 #The <filename> is passing an arguement that is the name of the file
 #Clicking on the file on the website will map files' name to our route endpoint hence '/recordings/<filename>'
 @app.route('/stream/converted_videos/<filename>', methods=['GET'])
-def stream(filename):
+def SendFileToStream(filename):
     url = boto3.client('s3').generate_presigned_url(
         ClientMethod='get_object', 
         Params={'Bucket': Bucket, 'Key': 'converted_videos/' + filename},
         ExpiresIn=3600
     )
     if request.method == 'GET':
-        return url
-
-
-# @app.route('/video_feed')
-# def video_feed():
-#     return Response(,
-#                     mimetype='multipart/x-mixed-replace; boundary=frame')
-    
+        return redirect(url, code=302)
 
 
 if __name__ == '__main__':
