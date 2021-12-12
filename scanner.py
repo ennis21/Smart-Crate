@@ -10,7 +10,6 @@ from pprint import pprint
 from sendemail import *
 
 def run_example():
-
     print("\nSparkFun DE2120 Barcode Scanner Breakout Example 1")
     my_scanner = de2120_barcode_scanner.DE2120BarcodeScanner()
 
@@ -31,18 +30,9 @@ def run_example():
             
                  #Convert buffer value to a string 
             trackinginfo = get_tracking(trackingnumber)            #Validate if the tracking number is found in dynamodb
-    
-            '''
-            if trackinginfo:
-                print("Get traccking works")
-                pprint(trackinginfo, sort_dicts=False)
-                '''
 
             scan_buffer = ""                        #Empty the string and scan again 
         #time.sleep(0.02)
-
-    
-
 
 def get_tracking(trackingnumber):
 
@@ -57,8 +47,6 @@ def get_tracking(trackingnumber):
         
 
     print("This is the tracking number " + trackingnumber)
-    #response = table.get_item(Key={'track': trackingnumber})
-    #response = table.query(KeyConditionExpression=Key('track').eq('trackingnumber'))
     response = table.scan()
     print(response)
 
@@ -79,42 +67,6 @@ def get_tracking(trackingnumber):
             
         else:
             print("Wrong")
-
-
-        '''
-    for item in Items:
-        if trackingnumber == Items:
-            print("correct")
-        print("wrong")
-        '''
-
-
-
-
-    '''
-    ####Tracking Validation needs adjusting####
-    if trackingnumber in response:
-        print("Tracking Number Found") 
-    else:  
-        print("Tracking Number Not Found")
-    '''
-
-    '''
-    #Option2
-    response = dynamodb.query(
-        KeyConditionExpression=Key('track').eq(trackingnumber)
-    )
-
-    items = response['Items']
-
-    for item in items:
-        print(item)
-
-    '''
-
-    
-    
-
     
 if __name__ == '__main__':
     try:
